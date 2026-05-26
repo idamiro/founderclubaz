@@ -28,16 +28,6 @@ document.querySelectorAll("[data-tab]").forEach(button => {
   });
 });
 
-document.querySelectorAll("form").forEach(form => {
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    alert(isEnglishPage
-      ? "Your application has been received. Our team will contact you shortly."
-      : "M\u00fcraci\u0259tiniz qeydə al\u0131nd\u0131. Komandam\u0131z sizinlə ən q\u0131sa zamanda əlaqə saxlayacaq.");
-    form.reset();
-  });
-});
-
 // FINAL FIX: expandable membership details, only clicked card opens.
 document.querySelectorAll("#plans .details-toggle").forEach(button => {
   if(button.dataset.boundFinal === "true") return;
