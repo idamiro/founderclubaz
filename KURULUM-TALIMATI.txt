@@ -1,0 +1,47 @@
+FOUNDER CLUB - YENI REPOSITORY KURULUMU
+=======================================
+
+Bu klasor sitenin tam paketidir. HTML dosyalari, Ingilizce sayfalar,
+CSS, JavaScript ve tum fotograflar/logolar bu klasorun icindedir.
+
+1. GitHub'da yeni, bos bir repository olusturun.
+
+2. Bu ZIP'i bilgisayarinizda acin.
+
+3. "founderclubmain-ready-repository" klasorunun ICINDEKI tum dosya ve
+   klasorleri yeni repository'nin ana dizinine yukleyin.
+   Klasorun kendisini repo icinde ikinci bir klasor olarak yuklemeyin.
+
+   Dogru gorunum:
+
+   repository/
+     index.html
+     haqqimizda.html
+     style.css
+     script.js
+     wrangler.jsonc
+     hero-baku.jpg
+     ... diger fotograflar ve sayfalar
+     en/
+       index.html
+       haqqimizda.html
+       ... diger Ingilizce sayfalar
+
+4. "en" klasoru aynen kalmalidir. Onu ana klasore dagitmayin.
+   Ana klasordeki index.html Azerbaycanca ana sayfadir.
+   en/index.html Ingilizce ana sayfadir.
+
+5. Cloudflare Workers/Pages repository'yi bagladiginizda
+   wrangler.jsonc dosyasi ana dizinde bulunmalidir.
+
+KONTROL LISTESI
+---------------
+- Ana dizinde index.html var.
+- Ana dizinde style.css ve script.js var.
+- Ana dizinde wrangler.jsonc var.
+- en klasorunun icinde 70 HTML dosyasi var.
+- Ana dizinde 70 Azerbaycanca HTML dosyasi var.
+- Fotograflar/logolar ana dizinde duruyor.
+
+Not: GitHub toplu yuklemede bir dosyayi atlarsa ZIP'i acip klasorun
+icindeki dosyalari yeniden suruklemek yerine eksik dosyayi yukleyin.
