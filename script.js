@@ -113,7 +113,7 @@ document.querySelectorAll(".faq-question").forEach((button) => {
 (() => {
   document.documentElement.classList.add("motion-ready");
   const revealTargets = document.querySelectorAll(
-    ".reveal, .stagger, .plans, .steps, .values, .features, .events-grid, .faq-list, .partners-grid, .honorary-grid"
+    ".reveal, .stagger, .plans, .steps, .values, .features, .events-grid, .faq-list"
   );
 
   revealTargets.forEach((el) => {
