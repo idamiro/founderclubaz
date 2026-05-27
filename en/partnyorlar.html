@@ -786,13 +786,17 @@
       var cards = document.querySelectorAll('.partner-card');
       var count = document.getElementById('partnersCount');
       if (!select) return;
+      function normalize(value) {
+        return (value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').toLowerCase().trim();
+      }
       function applyFilter() {
-        var filter = select.value;
+        var filter = normalize(select.value);
         var visible = 0;
         cards.forEach(function(card) {
-          var categories = (card.getAttribute('data-category') || '').split('|');
-          var show = filter === 'Hamısı' || filter === 'All' || categories.indexOf(filter) !== -1;
+          var categories = (card.getAttribute('data-category') || '').split('|').map(normalize);
+          var show = filter === normalize('Hamısı') || filter === 'all' || categories.indexOf(filter) !== -1;
           card.hidden = !show;
+          card.style.display = show ? '' : 'none';
           if (show) visible += 1;
         });
         if (count) count.textContent = visible;
