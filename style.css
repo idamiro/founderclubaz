@@ -4676,6 +4676,65 @@ html[lang="en"] .nav-links.open::before{
     transform:translateY(-50%);
   }
 }
+
+/* Final polish: lighter-feeling motion without changing layout */
+:root{
+  --motion-soft:cubic-bezier(.2,.8,.2,1);
+}
+.btn,
+.nav-links > a,
+.nav-item > a,
+.language-switch a,
+.menu-btn,
+.partner-filter-btn,
+.selector-tab,
+.values-arrow,
+.training-action,
+.event-card,
+.training-card,
+.training-list-card,
+.partner-card,
+.honorary-partner-card,
+.value,
+.plan,
+.lux-plan,
+.selector-card,
+.testimonial,
+.faq-item{
+  transition:
+    transform .32s var(--motion-soft),
+    box-shadow .32s var(--motion-soft),
+    border-color .32s var(--motion-soft),
+    background-color .32s var(--motion-soft),
+    color .24s ease,
+    opacity .24s ease;
+}
+.dropdown-menu{
+  transform-origin:top center;
+  animation:menuLift .18s var(--motion-soft) both;
+}
+.nav-links.open{
+  animation:mobileMenuLift .24s var(--motion-soft) both;
+}
+.partner-logo-box img,
+.honorary-logo-box img,
+.event-card-image img,
+.training-poster img,
+.training-card img{
+  transition:transform .45s var(--motion-soft), filter .35s ease;
+}
+.partner-card:hover .partner-logo-box img,
+.honorary-partner-card:hover .honorary-logo-box img{
+  transform:translateY(-2px) scale(1.025);
+}
+@keyframes menuLift{
+  from{opacity:0;transform:translateY(8px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes mobileMenuLift{
+  from{opacity:0;transform:translateY(-8px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
 @media(prefers-reduced-motion:reduce){
   html.motion-ready .reveal,
   html.motion-ready .stagger > *,
@@ -4684,9 +4743,12 @@ html[lang="en"] .nav-links.open::before{
   .partner-card,
   .honorary-partner-card,
   .partner-logo-box img,
-  .honorary-logo-box img{
+  .honorary-logo-box img,
+  .dropdown-menu,
+  .nav-links.open{
     opacity:1 !important;
     transform:none !important;
     transition:none !important;
+    animation:none !important;
   }
 }
