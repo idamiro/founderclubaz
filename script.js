@@ -1,6 +1,13 @@
 const menuBtn = document.querySelector(".menu-btn");
 const navLinks = document.querySelector(".nav-links");
 const isEnglishPage = document.documentElement.lang === "en";
+
+document.querySelectorAll(".kicker, .eyebrow").forEach((label) => {
+  const value = label.textContent.trim();
+  if (/^founder club az\b/i.test(value)) {
+    label.textContent = value.replace(/founder club az/i, value === value.toUpperCase() ? "FOUNDER CLUB" : "Founder Club");
+  }
+});
 if (menuBtn && navLinks) {
   menuBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open");
@@ -102,10 +109,11 @@ document.querySelectorAll(".faq-question").forEach((button) => {
 });
 
 
-// Global smooth reveal + premium header motion
+// Global smooth reveal + restrained header motion
 (() => {
+  document.documentElement.classList.add("motion-ready");
   const revealTargets = document.querySelectorAll(
-    ".reveal, .stagger, .plans, .steps, .features, .events-grid, .faq-list"
+    ".reveal, .stagger, .plans, .steps, .values, .features, .events-grid, .faq-list, .partners-grid, .honorary-grid"
   );
 
   revealTargets.forEach((el) => {
