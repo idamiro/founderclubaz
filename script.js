@@ -109,36 +109,9 @@ document.querySelectorAll(".faq-question").forEach((button) => {
 });
 
 
-// Global smooth reveal + restrained header motion
+// Keep content immediately visible; use motion only for direct interaction.
 (() => {
-  document.documentElement.classList.add("motion-ready");
-  const revealTargets = document.querySelectorAll(
-    ".reveal, .stagger, .plans, .steps, .values, .features, .events-grid, .faq-list"
-  );
-
-  revealTargets.forEach((el) => {
-    if (!el.classList.contains("reveal") && !el.classList.contains("stagger")) {
-      el.classList.add("stagger");
-    }
-  });
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.12,
-      rootMargin: "0px 0px -8% 0px"
-    });
-
-    revealTargets.forEach((el) => observer.observe(el));
-  } else {
-    revealTargets.forEach((el) => el.classList.add("in-view"));
-  }
+  document.querySelectorAll(".reveal, .stagger").forEach((el) => el.classList.add("in-view"));
 
   const header = document.querySelector(".header");
   const syncHeader = () => {
@@ -147,6 +120,22 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   };
   syncHeader();
   window.addEventListener("scroll", syncHeader, { passive: true });
+})();
+
+// Home values horizontal carousel arrows
+(() => {
+  const carousel = document.querySelector("#valuesCarousel");
+  if (!carousel) return;
+  const wrap = carousel.closest(".values-carousel");
+  const prev = wrap?.querySelector(".values-prev");
+  const next = wrap?.querySelector(".values-next");
+  const move = (direction) => {
+    const card = carousel.querySelector(".value");
+    const amount = card ? card.getBoundingClientRect().width + 22 : carousel.clientWidth * 0.8;
+    carousel.scrollBy({ left: direction * amount, behavior: "smooth" });
+  };
+  prev?.addEventListener("click", () => move(-1));
+  next?.addEventListener("click", () => move(1));
 })();
 
 
