@@ -1,0 +1,19 @@
+﻿{
+  "name": "Founder Club",
+  "short_name": "Founder Club",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#fbf7ef",
+  "background_color": "#fbf7ef",
+  "display": "standalone"
+}
