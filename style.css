@@ -4754,3 +4754,12 @@ html[lang="en"] .nav-links.open::before{
     animation:none !important;
   }
 }
+/* Mobile nav dropdown fix: keep submenus closed until the parent is tapped. */
+@media(max-width:1080px){
+  .nav-links.open .dropdown-menu{
+    display:none !important;
+  }
+  .nav-links.open .nav-item.mobile-open .dropdown-menu{
+    display:block !important;
+  }
+}
