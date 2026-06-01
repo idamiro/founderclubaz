@@ -1,4 +1,26 @@
 /shop https://founderclub.az/ 301
 /shop/ https://founderclub.az/ 301
-/beynelxalq-emekdasliqlar.html https://founderclub.az/beynalxalq-emekdasliqlar.html 301
-/en/beynelxalq-emekdasliqlar.html https://founderclub.az/en/beynalxalq-emekdasliqlar.html 301
+
+# Clean canonical URL redirects
+/index.html https://founderclub.az/ 301
+/en/index.html https://founderclub.az/en/ 301
+/talimler/ https://founderclub.az/talimler 301
+/tedbirler/ https://founderclub.az/tedbirler 301
+/partnyorlar/ https://founderclub.az/partnyorlar 301
+/beynelxalq-emekdasliqlar.html https://founderclub.az/beynalxalq-emekdasliqlar 301
+/en/beynelxalq-emekdasliqlar.html https://founderclub.az/en/beynalxalq-emekdasliqlar 301
+/:slug.html https://founderclub.az/:slug 301
+/en/:slug.html https://founderclub.az/en/:slug 301
+
+# Old WordPress and Events Calendar cleanup
+/events/* https://founderclub.az/tedbirler 301
+/event/* https://founderclub.az/tedbirler 301
+/page/* https://founderclub.az/tedbirler 301
+/tedbirler/* https://founderclub.az/tedbirler 301
+/genel/* https://founderclub.az/xeberler 301
+/category/* https://founderclub.az/xeberler 301
+/haberler/* https://founderclub.az/xeberler 301
+/gallery/* https://founderclub.az/xeberler 301
+/case/* https://founderclub.az/partnyorlar 301
+/wp-admin/* https://founderclub.az/ 301
+/wp-content/* https://founderclub.az/ 301
