@@ -268,7 +268,7 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   const targetText = 'Səfirliklərlə Görüşlər';
   document.querySelectorAll('a').forEach((a) => {
     if ((a.textContent || '').trim() === targetText) {
-      a.setAttribute('href', 'sefirlikler.html');
+      a.setAttribute('href', 'sefirlikler');
     }
   });
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -279,7 +279,7 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   }
   nodes.forEach((node) => {
     const a = document.createElement('a');
-    a.href = 'sefirlikler.html';
+    a.href = 'sefirlikler';
     a.textContent = targetText;
     node.parentNode.replaceChild(a, node);
   });
