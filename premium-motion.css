@@ -16,6 +16,8 @@ body.premium-motion {
 }
 
 body.premium-motion .header {
+  z-index: 10000;
+  overflow: visible;
   border-bottom: 1px solid rgba(7, 17, 31, .08);
   background: rgba(255, 254, 253, .78);
   backdrop-filter: blur(18px);
@@ -35,6 +37,17 @@ body.premium-motion .language-switch span {
 
 body.premium-motion .nav-links a:hover {
   transform: translateY(-1px);
+}
+
+body.premium-motion .nav,
+body.premium-motion .nav-links,
+body.premium-motion .nav-item,
+body.premium-motion .has-dropdown {
+  overflow: visible;
+}
+
+body.premium-motion .dropdown-menu {
+  z-index: 10001;
 }
 
 body.premium-motion .btn {
