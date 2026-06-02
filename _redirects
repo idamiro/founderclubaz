@@ -1,5 +1,18 @@
 /shop https://founderclub.az/ 301
 /shop/ https://founderclub.az/ 301
+/founders-party https://founderclub.az/tedbirler 301
+/founders-party/ https://founderclub.az/tedbirler 301
+/page-sitemap.xml https://founderclub.az/sitemap.xml 301
+/post-sitemap.xml https://founderclub.az/sitemap.xml 301
+/event-sitemap.xml https://founderclub.az/sitemap.xml 301
+/tribe_events-sitemap.xml https://founderclub.az/sitemap.xml 301
+/category-sitemap.xml https://founderclub.az/sitemap.xml 301
+/wp-sitemap.xml https://founderclub.az/sitemap.xml 301
+/sitemap_index.xml https://founderclub.az/sitemap.xml 301
+/feed https://founderclub.az/ 301
+/feed/ https://founderclub.az/ 301
+/comments/feed https://founderclub.az/ 301
+/comments/feed/ https://founderclub.az/ 301
 
 # Clean canonical URL redirects
 /index.html https://founderclub.az/ 301
@@ -16,11 +29,17 @@
 /events/* https://founderclub.az/tedbirler 301
 /event/* https://founderclub.az/tedbirler 301
 /page/* https://founderclub.az/tedbirler 301
+/founders-party/* https://founderclub.az/tedbirler 301
 /tedbirler/* https://founderclub.az/tedbirler 301
 /genel/* https://founderclub.az/xeberler 301
 /category/* https://founderclub.az/xeberler 301
 /haberler/* https://founderclub.az/xeberler 301
 /gallery/* https://founderclub.az/xeberler 301
 /case/* https://founderclub.az/partnyorlar 301
+/tag/* https://founderclub.az/xeberler 301
+/author/* https://founderclub.az/ 301
+/wp-json/* https://founderclub.az/ 301
 /wp-admin/* https://founderclub.az/ 301
 /wp-content/* https://founderclub.az/ 301
+/wp-includes/* https://founderclub.az/ 301
+/xmlrpc.php https://founderclub.az/ 301
