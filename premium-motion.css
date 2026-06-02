@@ -1,0 +1,232 @@
+/* Founder Club premium motion layer. Visual polish only; no layout/content changes. */
+:root {
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+  --motion-ease-soft: cubic-bezier(.16, 1, .3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.premium-motion {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(215, 174, 99, .12), transparent 30%),
+    radial-gradient(circle at 84% 18%, rgba(7, 17, 31, .07), transparent 28%),
+    #fffefd;
+}
+
+body.premium-motion .header {
+  border-bottom: 1px solid rgba(7, 17, 31, .08);
+  background: rgba(255, 254, 253, .78);
+  backdrop-filter: blur(18px);
+  transition: background .45s var(--motion-ease), box-shadow .45s var(--motion-ease);
+}
+
+body.premium-motion .header.is-scrolled {
+  background: rgba(255, 254, 253, .92);
+  box-shadow: 0 16px 46px rgba(7, 17, 31, .08);
+}
+
+body.premium-motion .nav-links a,
+body.premium-motion .language-switch a,
+body.premium-motion .language-switch span {
+  transition: color .28s var(--motion-ease), opacity .28s var(--motion-ease), transform .28s var(--motion-ease);
+}
+
+body.premium-motion .nav-links a:hover {
+  transform: translateY(-1px);
+}
+
+body.premium-motion .btn {
+  transition: transform .34s var(--motion-ease), box-shadow .34s var(--motion-ease), background .34s var(--motion-ease), color .34s var(--motion-ease);
+}
+
+body.premium-motion .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 42px rgba(7, 17, 31, .16);
+}
+
+body.premium-motion .full-hero-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .42);
+  box-shadow: 0 34px 90px rgba(7, 17, 31, .18);
+  transform: translateZ(0);
+}
+
+body.premium-motion .full-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(115deg, rgba(7, 17, 31, .82), rgba(7, 17, 31, .38) 42%, rgba(7, 17, 31, .08)),
+    radial-gradient(circle at 80% 24%, rgba(215, 174, 99, .24), transparent 24%);
+  pointer-events: none;
+}
+
+body.premium-motion .full-hero-card img {
+  filter: saturate(1.04) contrast(1.03);
+  transform: scale(1.035);
+  transition: transform 7s var(--motion-ease-soft), filter 1s var(--motion-ease);
+}
+
+body.premium-motion .full-hero-card:hover img {
+  transform: scale(1.07);
+}
+
+body.premium-motion .full-hero-overlay {
+  z-index: 2;
+}
+
+body.premium-motion .stat,
+body.premium-motion .value,
+body.premium-motion .selector-card,
+body.premium-motion .testimonial,
+body.premium-motion .event-card,
+body.premium-motion .training-card,
+body.premium-motion .partner-card,
+body.premium-motion .faq-item {
+  transition: transform .44s var(--motion-ease), box-shadow .44s var(--motion-ease), border-color .44s var(--motion-ease), background .44s var(--motion-ease);
+}
+
+body.premium-motion .stat:hover,
+body.premium-motion .value:hover,
+body.premium-motion .selector-card:hover,
+body.premium-motion .testimonial:hover,
+body.premium-motion .event-card:hover,
+body.premium-motion .training-card:hover,
+body.premium-motion .partner-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 28px 76px rgba(7, 17, 31, .13);
+}
+
+body.premium-motion .selector-card {
+  position: relative;
+  overflow: hidden;
+}
+
+body.premium-motion .selector-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(215, 174, 99, .14), transparent 34%);
+  opacity: 0;
+  transition: opacity .42s var(--motion-ease);
+  pointer-events: none;
+}
+
+body.premium-motion .selector-card:hover::after {
+  opacity: 1;
+}
+
+body.premium-motion .event-card-image,
+body.premium-motion .training-card {
+  overflow: hidden;
+}
+
+body.premium-motion .event-card img,
+body.premium-motion .training-card img,
+body.premium-motion .testimonial-photo {
+  transition: transform .7s var(--motion-ease), filter .7s var(--motion-ease);
+}
+
+body.premium-motion .event-card:hover img,
+body.premium-motion .training-card:hover img,
+body.premium-motion .testimonial:hover .testimonial-photo {
+  transform: scale(1.055);
+  filter: saturate(1.06);
+}
+
+body.premium-motion .reveal,
+body.premium-motion .motion-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s var(--motion-ease), transform .8s var(--motion-ease);
+}
+
+body.premium-motion .reveal.in-view,
+body.premium-motion .motion-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.premium-motion .motion-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .72s var(--motion-ease), transform .72s var(--motion-ease);
+}
+
+body.premium-motion .motion-stagger.in-view > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.premium-motion .motion-stagger.in-view > *:nth-child(2) { transition-delay: .06s; }
+body.premium-motion .motion-stagger.in-view > *:nth-child(3) { transition-delay: .12s; }
+body.premium-motion .motion-stagger.in-view > *:nth-child(4) { transition-delay: .18s; }
+body.premium-motion .motion-stagger.in-view > *:nth-child(5) { transition-delay: .24s; }
+body.premium-motion .motion-stagger.in-view > *:nth-child(6) { transition-delay: .30s; }
+
+body.premium-motion .cursor-glow {
+  position: fixed;
+  width: 260px;
+  height: 260px;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(215, 174, 99, .13), transparent 62%);
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+  opacity: .72;
+}
+
+body.premium-motion main,
+body.premium-motion header,
+body.premium-motion footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  body.premium-motion .full-hero-card:hover img {
+    transform: scale(1.04);
+  }
+
+  body.premium-motion .stat:hover,
+  body.premium-motion .value:hover,
+  body.premium-motion .selector-card:hover,
+  body.premium-motion .testimonial:hover,
+  body.premium-motion .event-card:hover,
+  body.premium-motion .training-card:hover,
+  body.premium-motion .partner-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body.premium-motion *,
+  body.premium-motion *::before,
+  body.premium-motion *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body.premium-motion .reveal,
+  body.premium-motion .motion-reveal,
+  body.premium-motion .motion-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  body.premium-motion .cursor-glow {
+    display: none;
+  }
+}
