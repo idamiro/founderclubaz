@@ -4763,3 +4763,53 @@ html[lang="en"] .nav-links.open::before{
     display:block !important;
   }
 }
+
+/* Hero overflow repair: remove horizontal scroll while preserving the full-bleed look. */
+html,
+body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+.full-hero,
+.full-hero .container{
+  width:100% !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+}
+.full-hero-card,
+.full-hero-card img{
+  width:100% !important;
+  max-width:100% !important;
+}
+.full-hero-overlay{
+  box-sizing:border-box;
+  max-width:min(520px,calc(100% - 52px)) !important;
+}
+.full-hero-overlay h1,
+.full-hero-overlay p{
+  max-width:100% !important;
+  overflow-wrap:break-word;
+}
+@media(max-width:760px){
+  .full-hero-overlay{
+    left:22px !important;
+    right:22px !important;
+    width:calc(100% - 44px) !important;
+    max-width:none !important;
+  }
+  .full-hero-overlay h1{
+    font-size:clamp(25px,7.2vw,30px) !important;
+    line-height:1.12 !important;
+  }
+  .full-hero-overlay p{
+    font-size:14px !important;
+    line-height:1.55 !important;
+  }
+  .hero-actions{
+    width:100% !important;
+  }
+  .hero-actions .btn{
+    min-width:0 !important;
+    white-space:normal !important;
+  }
+}
