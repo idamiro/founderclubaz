@@ -124,18 +124,17 @@ document.querySelectorAll(".faq-question").forEach((button) => {
 
 // Keep arrow glyphs optically centered inside links and buttons.
 (() => {
-  const selector = [
-    ".btn",
-    ".event-link",
-    ".training-action",
-    ".selector-btn",
-    ".all-testimonials-btn",
-    ".back-link",
-    ".calendar-btn",
-    ".values-arrow",
-    ".testimonial-arrow"
-  ].join(",");
+  const selector = "a,button";
   const arrowPattern = /([\u2190\u2191\u2192\u2197\u2039\u203a\u2304])/g;
+  const arrowNames = {
+    "\u2190": "left",
+    "\u2191": "up",
+    "\u2192": "right",
+    "\u2197": "up-right",
+    "\u2039": "previous",
+    "\u203a": "next",
+    "\u2304": "down"
+  };
   let scheduled = false;
 
   function wrapArrowText(element) {
@@ -151,7 +150,7 @@ document.querySelectorAll(".faq-question").forEach((button) => {
         arrowPattern.lastIndex = 0;
         if (arrowPattern.test(part)) {
           const arrow = document.createElement("span");
-          arrow.className = "button-arrow";
+          arrow.className = `button-arrow button-arrow--${arrowNames[part]}`;
           arrow.setAttribute("aria-hidden", "true");
           arrow.textContent = part;
           fragment.appendChild(arrow);

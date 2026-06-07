@@ -4817,16 +4817,35 @@ body{
 /* Optical alignment for arrow glyphs used inside interactive controls. */
 .button-arrow{
   display:inline-flex;
-  width:1em;
-  height:1em;
+  width:16px;
+  height:16px;
   flex:0 0 auto;
   align-items:center;
   justify-content:center;
+  position:relative;
+  overflow:visible;
+  font-size:0;
+  line-height:0;
+  transform:none;
+  vertical-align:middle;
+}
+.button-arrow::before{
+  position:absolute;
+  top:50%;
+  left:50%;
   font-family:Arial,"Helvetica Neue",sans-serif;
-  font-size:1.05em;
+  font-size:16px;
   font-weight:700;
   line-height:1;
-  transform:translateY(-.03em);
+  transform:translate(-50%,-60%);
+}
+.button-arrow--left::before{content:"\2190"}
+.button-arrow--up::before{content:"\2191"}
+.button-arrow--right::before{content:"\2192"}
+.button-arrow--up-right::before{content:"\2197"}
+.button-arrow--previous::before{content:"\2039";font-size:24px;font-weight:400}
+.button-arrow--next::before{content:"\203a";font-size:24px;font-weight:400}
+.button-arrow--down::before{content:"\2304"}
 }
 .event-link,
 .training-action,
@@ -4857,11 +4876,11 @@ body{
   transform:translateY(-.03em);
 }
 @media(max-width:760px){
-  .button-arrow{
-    transform:translateY(-.05em);
+  .button-arrow::before{
+    transform:translate(-50%,-64%);
   }
-  .values-arrow .button-arrow,
-  .testimonial-arrow .button-arrow{
-    transform:none;
+  .button-arrow--up-right::before,
+  .button-arrow--up::before{
+    transform:translate(-50%,-60%);
   }
 }
