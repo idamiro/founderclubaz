@@ -1245,6 +1245,26 @@ h1,h2,h3,h4,.plan-name,.price,.year{
 @media(max-width:1040px){.events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.event-detail-layout{grid-template-columns:1fr}.event-detail-gallery{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.events-grid,.event-detail-gallery{grid-template-columns:1fr}.event-card-image{height:245px}.events-hero{padding:66px 0 36px}}
 
+@media(max-width:680px){
+  .events-section .container,
+  .events-grid,
+  .event-card,
+  .event-card-body,
+  .event-detail-layout,
+  .event-detail-copy,
+  .event-detail-body,
+  .event-detail-gallery{
+    min-width:0;
+    max-width:100%;
+  }
+  .event-card h3,
+  .event-card p,
+  .event-detail-copy h1,
+  .event-detail-body p{
+    overflow-wrap:anywhere;
+  }
+}
+
 
 /* FAQ SECTION */
 .faq-section{
