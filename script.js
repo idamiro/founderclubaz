@@ -122,6 +122,68 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   window.addEventListener("scroll", syncHeader, { passive: true });
 })();
 
+// Keep arrow glyphs optically centered inside links and buttons.
+(() => {
+  const selector = [
+    ".btn",
+    ".event-link",
+    ".training-action",
+    ".selector-btn",
+    ".all-testimonials-btn",
+    ".back-link",
+    ".calendar-btn",
+    ".values-arrow",
+    ".testimonial-arrow"
+  ].join(",");
+  const arrowPattern = /([\u2190\u2191\u2192\u2197\u2039\u203a\u2304])/g;
+  let scheduled = false;
+
+  function wrapArrowText(element) {
+    Array.from(element.childNodes).forEach((node) => {
+      const value = node.nodeValue || "";
+      arrowPattern.lastIndex = 0;
+      if (node.nodeType !== Node.TEXT_NODE || !arrowPattern.test(value)) return;
+
+      arrowPattern.lastIndex = 0;
+      const fragment = document.createDocumentFragment();
+      value.split(arrowPattern).forEach((part) => {
+        if (!part) return;
+        arrowPattern.lastIndex = 0;
+        if (arrowPattern.test(part)) {
+          const arrow = document.createElement("span");
+          arrow.className = "button-arrow";
+          arrow.setAttribute("aria-hidden", "true");
+          arrow.textContent = part;
+          fragment.appendChild(arrow);
+        } else {
+          fragment.appendChild(document.createTextNode(part));
+        }
+      });
+      node.replaceWith(fragment);
+    });
+  }
+
+  function alignArrows() {
+    document.querySelectorAll(selector).forEach(wrapArrowText);
+  }
+
+  function scheduleAlignment() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      alignArrows();
+    });
+  }
+
+  alignArrows();
+  new MutationObserver(scheduleAlignment).observe(document.body, {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+})();
+
 // Home values horizontal carousel arrows
 (() => {
   const carousel = document.querySelector("#valuesCarousel");
