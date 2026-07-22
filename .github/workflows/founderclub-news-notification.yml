@@ -1,0 +1,81 @@
+name: Founder Club news notification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "xeberler.html"
+      - ".github/scripts/detect_new_article.py"
+      - ".github/workflows/founderclub-news-notification.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Load previous news page
+        shell: bash
+        run: git show "${{ github.event.before }}:xeberler.html" > /tmp/xeberler-before.html || true
+
+      - name: Detect a new first news card
+        id: article
+        run: python .github/scripts/detect_new_article.py
+
+      - name: Authenticate to Google Cloud
+        if: steps.article.outputs.changed == 'true'
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          token_format: access_token
+
+      - name: Build notification payload
+        if: steps.article.outputs.changed == 'true'
+        env:
+          NEWS_TITLE: "${{ steps.article.outputs.title }}"
+          NEWS_BODY: "${{ steps.article.outputs.body }}"
+          NEWS_URL: "${{ steps.article.outputs.url }}"
+        run: |
+          python - <<'PY'
+          import json, os
+          message = {
+              "message": {
+                  "topic": "founderclub_news",
+                  "notification": {
+                      "title": "Founder Club \u2014 Yeni x\u0259b\u0259r",
+                      "body": os.environ["NEWS_TITLE"],
+                  },
+                  "data": {
+                      "url": os.environ["NEWS_URL"],
+                      "summary": os.environ["NEWS_BODY"],
+                  },
+                  "android": {
+                      "priority": "high",
+                      "notification": {
+                          "channel_id": "founderclub_news",
+                          "sound": "default",
+                      },
+                  },
+              }
+          }
+          with open("/tmp/fcm-message.json", "w", encoding="utf-8") as handle:
+              json.dump(message, handle, ensure_ascii=False)
+          PY
+
+      - name: Send notification to all app users
+        if: steps.article.outputs.changed == 'true'
+        env:
+          ACCESS_TOKEN: "${{ steps.auth.outputs.access_token }}"
+          FIREBASE_PROJECT_ID: "${{ secrets.FIREBASE_PROJECT_ID }}"
+        run: |
+          curl --fail-with-body \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "Content-Type: application/json; UTF-8" \
+            --data-binary @/tmp/fcm-message.json \
+            "https://fcm.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/messages:send"
