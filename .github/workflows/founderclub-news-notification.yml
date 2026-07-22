@@ -1,6 +1,7 @@
 name: Founder Club news notification
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -28,7 +29,7 @@ jobs:
         run: python .github/scripts/detect_new_article.py
 
       - name: Authenticate to Google Cloud
-        if: steps.article.outputs.changed == 'true'
+        if: steps.article.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         id: auth
         uses: google-github-actions/auth@v2
         with:
@@ -36,7 +37,7 @@ jobs:
           token_format: access_token
 
       - name: Build notification payload
-        if: steps.article.outputs.changed == 'true'
+        if: steps.article.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         env:
           NEWS_TITLE: "${{ steps.article.outputs.title }}"
           NEWS_BODY: "${{ steps.article.outputs.body }}"
@@ -69,7 +70,7 @@ jobs:
           PY
 
       - name: Send notification to all app users
-        if: steps.article.outputs.changed == 'true'
+        if: steps.article.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         env:
           ACCESS_TOKEN: "${{ steps.auth.outputs.access_token }}"
           FIREBASE_PROJECT_ID: "${{ secrets.FIREBASE_PROJECT_ID }}"
